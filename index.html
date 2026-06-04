@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brand & Beyond</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --black: #0a0a0a;
     --white: #f5f4f0;
-    --gray: #8a8a8a;
-    --mid: #3a3a3a;
-    --accent: #c8ff00;
+    --mid: #9a9a9a;
+    --border: #e2e0da;
+    --accent: #0a0a0a;
   }
 
   html { scroll-behavior: smooth; }
@@ -25,378 +25,326 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 48px;
+    padding: 0 48px;
+    height: 64px;
     background: var(--white);
     border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, backdrop-filter 0.3s;
+    transition: border-color 0.3s;
   }
-  nav.scrolled { border-color: rgba(0,0,0,0.08); backdrop-filter: blur(12px); background: rgba(245,244,240,0.9); }
-
+  nav.scrolled { border-bottom-color: var(--border); }
   .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
-    text-decoration: none; color: var(--black);
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    text-decoration: none;
   }
-  .nav-logo span { color: var(--gray); }
-
-  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
   .nav-links a {
-    font-size: 0.88rem; font-weight: 400; text-decoration: none; color: var(--mid);
-    letter-spacing: 0.01em; transition: color 0.2s;
-    position: relative;
+    font-size: 14px; font-weight: 400; color: var(--black);
+    text-decoration: none; opacity: 0.6; transition: opacity 0.2s;
   }
-  .nav-links a.active { color: var(--black); font-weight: 500; }
-  .nav-links a.active::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
-    background: var(--black);
-  }
-  .nav-links a:hover { color: var(--black); }
-
-  .nav-cta {
-    background: var(--black); color: var(--white);
-    padding: 10px 22px; border-radius: 2px;
-    font-size: 0.88rem; font-weight: 500; text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    white-space: nowrap;
-  }
-  .nav-cta:hover { background: #222; transform: translateY(-1px); }
-
-  .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--black); transition: 0.3s; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    padding: 120px 48px 80px;
-    display: flex; flex-direction: column; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-
-  .ticker-bar {
-    position: absolute; top: 80px; left: 0; right: 0;
-    overflow: hidden; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding: 10px 0; background: var(--white);
-  }
-  .ticker-track {
-    display: flex; gap: 80px; width: max-content;
-    animation: ticker 20s linear infinite;
-  }
-  .ticker-item { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); white-space: nowrap; }
-  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-  .hero-content { max-width: 900px; margin-top: 40px; }
-
-  h1.hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3.2rem, 8vw, 7.5rem);
-    font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
-    margin-bottom: 0;
-  }
-  h1.hero-title .line-1 { display: block; color: var(--black); }
-  h1.hero-title .line-2 { display: block; color: var(--black); }
-  h1.hero-title .line-3 {
-    display: block; color: var(--gray); font-style: italic;
-    font-weight: 700;
-  }
-
-  /* Typewriter cycling */
-  .cycle-word { display: inline-block; min-width: 2ch; }
-
-  .hero-sub {
-    margin-top: 40px; max-width: 460px;
-    font-size: 1rem; line-height: 1.65; color: var(--mid); font-weight: 300;
-  }
-
-  .hero-btns { display: flex; align-items: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
-
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; border-bottom: 1.5px solid var(--black); padding-bottom: 2px; }
   .btn-primary {
     background: var(--black); color: var(--white);
-    padding: 14px 32px; border-radius: 2px;
-    font-size: 0.9rem; font-weight: 500; text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    padding: 10px 22px; font-size: 14px; font-weight: 500;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-block;
   }
-  .btn-primary:hover { background: #222; transform: translateY(-2px); }
+  .btn-primary:hover { opacity: 0.8; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .nav-hamburger span { width: 24px; height: 1.5px; background: var(--black); display: block; transition: all 0.3s; }
 
-  .btn-ghost {
-    color: var(--black); font-size: 0.9rem; font-weight: 400; text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
-    border-bottom: 1px solid var(--black); padding-bottom: 2px;
-    transition: gap 0.2s;
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
   }
-  .btn-ghost:hover { gap: 14px; }
-
-  /* ── STATS ── */
-  #stats {
-    padding: 80px 48px;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  .hero-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 110px);
+    line-height: 1.0;
+    font-weight: 400;
+    letter-spacing: -2px;
   }
-  .stat-item { padding: 40px; border-right: 1px solid rgba(0,0,0,0.1); }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em;
-    color: var(--black);
-  }
-  .stat-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-top: 8px; }
-
-  /* ── ABOUT ── */
-  #about {
-    padding: 100px 48px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
-    border-top: 1px solid rgba(0,0,0,0.1);
-  }
-  .about-left h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em;
-    line-height: 1.1; margin-bottom: 28px;
-  }
-  .about-left p { font-size: 1rem; line-height: 1.75; color: var(--mid); margin-bottom: 16px; font-weight: 300; }
-  .about-left .tagline {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem;
-    color: var(--black); margin-top: 28px; border-left: 3px solid var(--black); padding-left: 16px;
-  }
-
-  .about-right { padding-top: 12px; }
-  .differentiator {
-    border-top: 1px solid rgba(0,0,0,0.12); padding: 22px 0;
-  }
-  .differentiator:last-child { border-bottom: 1px solid rgba(0,0,0,0.12); }
-  .diff-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
-  .diff-text { font-size: 0.95rem; font-weight: 500; color: var(--black); line-height: 1.4; }
-
-  /* ── SERVICES ── */
-  #services { padding: 100px 48px; border-top: 1px solid rgba(0,0,0,0.1); }
-  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
-  .section-header h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em;
-  }
-  .section-tag { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
-
-  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
-
-  .service-card {
-    background: var(--white); padding: 44px 40px;
-    border: 1px solid rgba(0,0,0,0.1); position: relative;
-    transition: background 0.3s, transform 0.25s;
-    cursor: default; overflow: hidden;
-  }
-  .service-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--black); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { background: #f0efe9; transform: translateY(-3px); }
-
-  .service-num {
-    font-family: 'Syne', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gray); margin-bottom: 24px;
-  }
-  .service-title {
-    font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 14px;
-    letter-spacing: -0.01em;
-  }
-  .service-desc { font-size: 0.9rem; line-height: 1.65; color: var(--mid); font-weight: 300; }
-  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-  .tag {
-    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
-    border: 1px solid rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 2px;
+  .hero-headline .line1 { display: block; color: var(--black); }
+  .hero-headline .line2 { display: block; color: var(--black); }
+  .hero-headline .typewriter {
     color: var(--mid);
+    font-style: italic;
+    display: inline;
+    vertical-align: baseline;
+    border-right: 3px solid var(--mid);
+    padding-right: 4px;
+    white-space: nowrap;
+    animation: blink-cursor 0.8s step-end infinite;
+  }
+  @keyframes blink-cursor { 50% { border-color: transparent; } }
+
+  .hero-bottom {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-top: 48px; gap: 40px;
+  }
+  .hero-sub {
+    font-size: 15px; line-height: 1.7; color: #555;
+    max-width: 340px; font-weight: 300;
+  }
+  .hero-cta-area { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+  .hero-scroll { font-size: 12px; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; }
+  .marquee-bar {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 12px 0; overflow: hidden; white-space: nowrap;
+    margin-top: 60px;
+  }
+  .marquee-track {
+    display: inline-flex; gap: 64px; animation: marquee 20s linear infinite;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid);
+  }
+  .marquee-track span::before { content: '◆ '; font-size: 8px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTION BASE */
+  section { padding: 100px 48px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 40px; display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--mid); display: block; }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1; font-weight: 400; letter-spacing: -1px;
   }
 
-  /* ── INDUSTRIES ── */
-  #industries { padding: 100px 48px; background: var(--black); border-top: 1px solid rgba(0,0,0,0.1); }
-  #industries h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em;
-    color: var(--white); margin-bottom: 8px;
+  /* STATS */
+  .stats-section {
+    background: var(--black); color: var(--white);
+    display: flex; gap: 0;
+    padding: 0;
   }
-  #industries .sub { color: var(--gray); font-size: 0.95rem; margin-bottom: 60px; font-weight: 300; }
+  .stat-item {
+    flex: 1; padding: 64px 48px;
+    border-right: 1px solid #1e1e1e;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1; letter-spacing: -2px;
+    margin-bottom: 12px;
+  }
+  .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; }
 
-  .industries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); }
-  .industry-item {
-    background: var(--black); padding: 36px 32px;
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .about-body { font-size: 17px; line-height: 1.75; color: #444; font-weight: 300; }
+  .about-body p + p { margin-top: 20px; }
+  .about-highlight {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(22px, 2.5vw, 32px);
+    line-height: 1.3; color: var(--black);
+    font-style: italic;
+    border-left: 2px solid var(--black); padding-left: 24px;
+    margin-top: 40px;
+  }
+
+  /* SERVICES */
+  .services-section { background: #f0ede7; }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 60px; }
+  .service-card {
+    background: #f0ede7; padding: 48px 40px;
     transition: background 0.3s;
   }
-  .industry-item:hover { background: #161616; }
+  .service-card:hover { background: var(--black); color: var(--white); }
+  .service-card:hover .service-num { color: rgba(255,255,255,0.3); }
+  .service-card:hover .service-desc { color: rgba(255,255,255,0.6); }
+  .service-card:hover .service-link { color: var(--white); border-bottom-color: rgba(255,255,255,0.4); }
+  .service-num { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; margin-bottom: 20px; }
+  .service-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px; font-weight: 400; line-height: 1.2;
+    margin-bottom: 16px; transition: color 0.3s;
+  }
+  .service-desc { font-size: 14px; line-height: 1.7; color: #666; margin-bottom: 24px; transition: color 0.3s; }
+  .service-link {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black);
+    padding-bottom: 2px; transition: color 0.3s, border-bottom-color 0.3s;
+  }
+
+  /* INDUSTRIES */
+  .industries-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; background: var(--border); margin-top: 60px;
+  }
+  .industry-item {
+    background: var(--white); padding: 36px 32px;
+    border: none; cursor: default;
+    transition: background 0.25s, color 0.25s;
+  }
+  .industry-item:hover { background: var(--black); color: var(--white); }
+  .industry-item:hover .ind-sub { color: rgba(255,255,255,0.5); }
   .ind-name {
-    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
-    color: var(--white); margin-bottom: 12px; letter-spacing: 0.02em;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; font-weight: 400; margin-bottom: 10px; transition: color 0.25s;
   }
-  .ind-desc { font-size: 0.85rem; line-height: 1.6; color: #888; font-weight: 300; }
+  .ind-sub { font-size: 13px; color: #777; line-height: 1.6; transition: color 0.25s; }
 
-  /* ── PROCESS ── */
-  #process { padding: 100px 48px; border-top: 1px solid rgba(0,0,0,0.1); }
-  #process h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em;
-    margin-bottom: 8px;
+  /* PROCESS */
+  .process-section { background: var(--black); color: var(--white); }
+  .process-section .section-label { color: #555; }
+  .process-section .section-label::before { background: #555; }
+  .process-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    margin-top: 60px; border-top: 1px solid #1e1e1e;
   }
-  #process .sub { font-size: 0.95rem; color: var(--mid); margin-bottom: 60px; font-weight: 300; }
+  .process-step {
+    padding: 48px 28px 40px;
+    border-right: 1px solid #1e1e1e;
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num { font-size: 11px; color: #444; letter-spacing: 0.1em; margin-bottom: 32px; }
+  .step-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; font-weight: 400; margin-bottom: 16px;
+    font-style: italic;
+  }
+  .step-desc { font-size: 13px; line-height: 1.7; color: #777; }
 
-  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
-  .process-steps::before {
-    content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px;
-    background: rgba(0,0,0,0.12); z-index: 0;
-  }
-  .step { padding: 0 20px; position: relative; z-index: 1; }
-  .step-num {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--black); color: var(--white);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 0.1em; margin-bottom: 20px;
-  }
-  .step-phase {
-    font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
-  }
-  .step-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-  .step-desc { font-size: 0.82rem; line-height: 1.6; color: var(--mid); font-weight: 300; }
-
-  /* ── PROBLEMS ── */
-  #problems { padding: 100px 48px; background: #f0efe9; border-top: 1px solid rgba(0,0,0,0.08); }
-  #problems h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em;
-    margin-bottom: 8px;
-  }
-  #problems .sub { font-size: 0.95rem; color: var(--mid); margin-bottom: 60px; font-weight: 300; }
-
-  .problems-list { max-width: 700px; }
+  /* PROBLEMS */
+  .problems-list { margin-top: 60px; }
   .problem-item {
-    display: flex; align-items: flex-start; gap: 24px; padding: 28px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    opacity: 0; transform: translateX(-20px);
-    transition: opacity 0.5s, transform 0.5s;
+    display: flex; align-items: baseline; gap: 32px;
+    padding: 32px 0; border-bottom: 1px solid var(--border);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 400; line-height: 1.2;
+    transition: color 0.2s;
   }
-  .problem-item.visible { opacity: 1; transform: none; }
-  .problem-item:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
-  .p-num {
-    font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.1em; color: var(--gray); min-width: 24px; padding-top: 3px;
-  }
-  .p-text { font-size: 1.05rem; font-weight: 500; color: var(--black); line-height: 1.4; }
-  .problems-note {
-    margin-top: 40px; font-size: 0.9rem; color: var(--mid);
-    font-style: italic; font-weight: 300;
+  .problem-item:hover { color: var(--mid); }
+  .problem-item:first-child { border-top: 1px solid var(--border); }
+  .problem-num { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--mid); min-width: 32px; }
+  .problem-solve {
+    margin-top: 48px;
+    font-size: 16px; color: #555; font-weight: 300;
+    border-left: 2px solid var(--black); padding-left: 20px;
   }
 
-  /* ── RESULTS ── */
-  #results { padding: 100px 48px; border-top: 1px solid rgba(0,0,0,0.1); }
-  #results h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em;
-    margin-bottom: 8px;
+  /* DIFFERENTIATORS */
+  .diff-section { background: var(--black); color: var(--white); }
+  .diff-section .section-label { color: #555; }
+  .diff-section .section-label::before { background: #555; }
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; align-items: start; }
+  .diff-checks { display: flex; flex-direction: column; gap: 20px; }
+  .diff-check {
+    display: flex; gap: 16px; align-items: baseline;
+    font-size: 16px; line-height: 1.5; color: rgba(255,255,255,0.85);
   }
-  #results .sub { font-size: 0.95rem; color: var(--mid); margin-bottom: 60px; font-weight: 300; }
+  .check-mark { color: var(--white); font-size: 12px; opacity: 0.6; flex-shrink: 0; }
+  .diff-manifesto { display: flex; flex-direction: column; gap: 24px; margin-top: 8px; }
+  .manifesto-line {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-style: italic; line-height: 1.15;
+    border-bottom: 1px solid #1e1e1e; padding-bottom: 24px;
+    color: rgba(255,255,255,0.9);
+  }
 
-  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .result-card {
-    padding: 40px 36px; border: 1px solid rgba(0,0,0,0.1);
-    transition: transform 0.25s, box-shadow 0.25s;
+  /* TESTIMONIAL */
+  .testimonial-section { background: #f0ede7; }
+  .testimonial-body {
+    max-width: 800px; margin: 0 auto; text-align: center;
   }
-  .result-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-  .result-icon { font-size: 1.8rem; margin-bottom: 16px; }
-  .result-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
-  .result-desc { font-size: 0.88rem; line-height: 1.6; color: var(--mid); font-weight: 300; }
+  .quote-mark { font-family: 'DM Serif Display', serif; font-size: 80px; line-height: 0.5; color: var(--border); margin-bottom: 32px; }
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    line-height: 1.5; font-weight: 400; color: var(--black);
+    margin-bottom: 32px;
+  }
+  .quote-author { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--mid); }
 
-  /* ── CTA ── */
-  #cta {
-    padding: 120px 48px; text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.1); background: var(--black);
+  /* CTA */
+  .cta-section { text-align: center; padding: 120px 48px; }
+  .cta-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(40px, 7vw, 96px);
+    font-weight: 400; letter-spacing: -2px; line-height: 1;
+    margin-bottom: 32px;
   }
-  #cta h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 800; letter-spacing: -0.04em;
-    color: var(--white); line-height: 1.0; margin-bottom: 24px;
+  .cta-sub { font-size: 16px; color: #777; margin-bottom: 48px; max-width: 400px; margin-left: auto; margin-right: auto; font-weight: 300; }
+  .btn-large {
+    background: var(--black); color: var(--white);
+    padding: 18px 48px; font-size: 15px; font-weight: 500;
+    border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: opacity 0.2s;
+    letter-spacing: 0.02em;
   }
-  #cta p { font-size: 1rem; color: #888; max-width: 480px; margin: 0 auto 44px; font-weight: 300; line-height: 1.7; }
-  #cta .btn-cta {
-    background: var(--white); color: var(--black);
-    padding: 16px 40px; border-radius: 2px;
-    font-size: 0.95rem; font-weight: 600; text-decoration: none; letter-spacing: 0.02em;
-    transition: background 0.2s, transform 0.15s; display: inline-block;
-  }
-  #cta .btn-cta:hover { background: #e8e7e3; transform: translateY(-2px); }
-  #cta .contact-info { margin-top: 48px; color: #555; font-size: 0.88rem; }
-  #cta .contact-info a { color: #888; text-decoration: none; transition: color 0.2s; }
-  #cta .contact-info a:hover { color: var(--white); }
+  .btn-large:hover { opacity: 0.75; }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer {
-    padding: 48px; border-top: 1px solid rgba(255,255,255,0.08); background: var(--black);
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    background: var(--black); color: var(--white);
+    padding: 64px 48px 32px;
   }
-  .footer-logo {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-    color: var(--white); letter-spacing: -0.02em;
-  }
-  .footer-logo span { color: #555; }
-  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
-  .footer-links a { font-size: 0.8rem; color: #555; text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy { font-size: 0.75rem; color: #444; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
+  .footer-brand .logo { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 16px; }
+  .footer-brand p { font-size: 13px; color: #666; line-height: 1.7; max-width: 220px; }
+  .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #555; margin-bottom: 20px; }
+  .footer-col a { display: block; font-size: 13px; color: #888; text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-contact { font-size: 13px; color: #666; line-height: 1.8; }
+  .footer-contact a { color: #888; text-decoration: none; display: block; transition: color 0.2s; }
+  .footer-contact a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid #1a1a1a; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 12px; color: #444; }
+  .footer-bottom a { font-size: 12px; color: #444; text-decoration: none; }
 
-  /* ── MOBILE NAV ── */
-  .mobile-menu {
-    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99;
-    background: var(--white); flex-direction: column; align-items: center; justify-content: center;
-    gap: 32px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; text-decoration: none;
-    color: var(--black); letter-spacing: -0.02em;
-  }
-  .mobile-menu .close {
-    position: absolute; top: 24px; right: 48px; background: none; border: none;
-    font-size: 1.5rem; cursor: pointer; color: var(--black);
-  }
+  /* FADE IN ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── ANIMATIONS ── */
-  .fade-up {
-    opacity: 0; transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: none; }
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile { display: none; flex-direction: column; gap: 0; position: fixed; top: 64px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); z-index: 99; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { padding: 16px 24px; font-size: 16px; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--border); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
+    section { padding: 72px 24px; }
+    .hero { padding: 0 24px 60px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .hero-cta-area { align-items: flex-start; }
+
+    .stats-section { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid #1e1e1e; padding: 40px 24px; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .services-grid { grid-template-columns: 1fr; }
-    .industries-grid { grid-template-columns: repeat(2, 1fr); }
-    .process-steps { grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .process-steps::before { display: none; }
-    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .industries-grid { grid-template-columns: 1fr 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .process-step { border-right: none; border-bottom: 1px solid #1e1e1e; }
+    .diff-grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
   }
-
-  @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
-    .nav-links, .nav-cta { display: none; }
-    .hamburger { display: flex; }
-
-    #hero { padding: 100px 24px 60px; }
-    .ticker-bar { display: none; }
-
-    #stats { grid-template-columns: 1fr; padding: 48px 24px; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 28px 0; }
-    .stat-item:last-child { border-bottom: none; }
-
-    #about { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
-    #services, #industries, #process, #problems, #results, #cta { padding: 60px 24px; }
-    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
-
-    .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  @media (max-width: 600px) {
     .industries-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr; gap: 24px; }
-    .results-grid { grid-template-columns: 1fr; }
-    .hero-btns { flex-direction: column; align-items: flex-start; }
+    .process-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-headline { letter-spacing: -1px; }
   }
 </style>
 </head>
@@ -404,423 +352,355 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">Brand<span>&</span>Beyond.</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#industries">Industries</a></li>
-    <li><a href="#process">Process</a></li>
-  </ul>
-  <a href="#cta" class="nav-cta">Get in touch</a>
-  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+  <a href="#" class="nav-logo">Brand & Beyond.</a>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#industries">Industries</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+  </div>
+  <div class="nav-hamburger" id="hamburger">
     <span></span><span></span><span></span>
-  </button>
+  </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close" id="closeMenu">✕</button>
-  <a href="#about" onclick="closeMobileMenu()">About</a>
-  <a href="#services" onclick="closeMobileMenu()">Services</a>
-  <a href="#industries" onclick="closeMobileMenu()">Industries</a>
-  <a href="#process" onclick="closeMobileMenu()">Process</a>
-  <a href="#cta" onclick="closeMobileMenu()">Contact</a>
+<div class="nav-mobile" id="navMobile">
+  <a href="#">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#industries">Industries</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Get in Touch</a>
 </div>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="ticker-bar">
-    <div class="ticker-track" id="tickerTrack">
-      <span class="ticker-item">B2B Marketing</span>
-      <span class="ticker-item">Brand Strategy</span>
-      <span class="ticker-item">Event Marketing</span>
-      <span class="ticker-item">Demand Generation</span>
-      <span class="ticker-item">Leadership Profiling</span>
-      <span class="ticker-item">SaaS Growth</span>
-      <span class="ticker-item">BFSI Expertise</span>
-      <span class="ticker-item">Pipeline Revenue</span>
-      <span class="ticker-item">B2B Marketing</span>
-      <span class="ticker-item">Brand Strategy</span>
-      <span class="ticker-item">Event Marketing</span>
-      <span class="ticker-item">Demand Generation</span>
-      <span class="ticker-item">Leadership Profiling</span>
-      <span class="ticker-item">SaaS Growth</span>
-      <span class="ticker-item">BFSI Expertise</span>
-      <span class="ticker-item">Pipeline Revenue</span>
+<section class="hero" id="home">
+  <h1 class="hero-headline fade-up">
+    <span class="line1">Brand. Growth. Beyond</span>
+    <span class="line2">for <span class="typewriter" id="typewriter"></span></span>
+  </h1>
+  <div class="hero-bottom fade-up">
+    <p class="hero-sub">Strategic branding, event marketing & growth solutions for B2B, SaaS, and enterprise brands ready to build measurable momentum.</p>
+    <div class="hero-cta-area">
+      <a href="#contact" class="btn-primary">Book a Strategy Call</a>
+      <span class="hero-scroll">↓ Scroll to explore</span>
     </div>
   </div>
-
-  <div class="hero-content">
-    <h1 class="hero-title">
-      <span class="line-1">Strategic Marketing</span>
-      <span class="line-2">Partner for</span>
-      <span class="line-3"><span class="cycle-word" id="cycleWord">B2B Brands.</span></span>
-    </h1>
-
-    <p class="hero-sub">
-      We combine boardroom-level brand strategy with performance-driven execution — building brands that are not just creative, but commercially impactful.
-    </p>
-
-    <div class="hero-btns">
-      <a href="#cta" class="btn-primary">Start a conversation</a>
-      <a href="#services" class="btn-ghost">See what we do <span>→</span></a>
+  <div class="marquee-bar">
+    <div class="marquee-track" id="marquee">
+      <span>Brand Strategy</span>
+      <span>Event Marketing</span>
+      <span>B2B Lead Generation</span>
+      <span>LinkedIn Profiling</span>
+      <span>Performance Marketing</span>
+      <span>SEO & Inbound</span>
+      <span>Marketing Automation</span>
+      <span>Campaign Execution</span>
+      <!-- duplicate for seamless loop -->
+      <span>Brand Strategy</span>
+      <span>Event Marketing</span>
+      <span>B2B Lead Generation</span>
+      <span>LinkedIn Profiling</span>
+      <span>Performance Marketing</span>
+      <span>SEO & Inbound</span>
+      <span>Marketing Automation</span>
+      <span>Campaign Execution</span>
     </div>
   </div>
 </section>
 
 <!-- STATS -->
-<section id="stats">
+<div class="stats-section">
   <div class="stat-item fade-up">
-    <div class="stat-num">5+</div>
-    <div class="stat-label">Industries Served</div>
+    <div class="stat-number">Brand</div>
+    <div class="stat-label">Focused Approach</div>
   </div>
-  <div class="stat-item fade-up" style="transition-delay:0.1s">
-    <div class="stat-num">360°</div>
-    <div class="stat-label">Integrated Approach</div>
+  <div class="stat-item fade-up">
+    <div class="stat-number">7+</div>
+    <div class="stat-label">Cross-Industry Expertise</div>
   </div>
-  <div class="stat-item fade-up" style="transition-delay:0.2s">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Strategy-Led Execution</div>
+  <div class="stat-item fade-up">
+    <div class="stat-number">15+</div>
+    <div class="stat-label">Years of Industry Expertise</div>
   </div>
-</section>
+  <div class="stat-item fade-up">
+    <div class="stat-number">360°</div>
+    <div class="stat-label">Integrated Execution</div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-left fade-up">
-    <h2>We don't just build brands — we build momentum.</h2>
-    <p>Brand & Beyond is a strategic growth and marketing partner helping ambitious businesses build strong market positioning and scalable revenue engines.</p>
-    <p>We integrate brand, demand generation, and digital performance to deliver measurable outcomes across the entire funnel — from visibility to qualified pipeline and conversion.</p>
-    <p>We partner with B2B, SaaS, and enterprise brands that are ready to move beyond fragmented marketing and build a unified, ROI-driven growth engine.</p>
-    <div class="tagline">Market authority. Measurable growth.</div>
-  </div>
-  <div class="about-right fade-up" style="transition-delay:0.15s">
-    <div class="differentiator">
-      <div class="diff-label">Our Approach</div>
-      <div class="diff-text">Strategy + Execution + Revenue Accountability</div>
+  <div class="section-label">About Us</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title fade-up">We don't just build brands—we build momentum.</h2>
+      <blockquote class="about-highlight fade-up">
+        "We operate where branding meets revenue."
+      </blockquote>
     </div>
-    <div class="differentiator">
-      <div class="diff-label">Built For</div>
-      <div class="diff-text">B2B & high-value enterprise sales cycles</div>
-    </div>
-    <div class="differentiator">
-      <div class="diff-label">How We Operate</div>
-      <div class="diff-text">Marketing aligned with your sales pipeline</div>
-    </div>
-    <div class="differentiator">
-      <div class="diff-label">Leadership</div>
-      <div class="diff-text">Founder-led strategic involvement — not junior execution</div>
-    </div>
-    <div class="differentiator">
-      <div class="diff-label">Our Promise</div>
-      <div class="diff-text">We don't execute without strategy. We don't build brands without growth.</div>
+    <div>
+      <div class="about-body fade-up">
+        <p>Brand & Beyond is a strategic growth and marketing partner helping ambitious businesses build strong market positioning and scalable revenue engines.</p>
+        <p>We combine boardroom-level brand strategy with performance-driven execution to ensure marketing is not just creative—but commercially impactful.</p>
+        <p>Unlike traditional agencies that work in silos, we integrate brand, demand generation, and digital performance to deliver measurable outcomes across the entire funnel—from visibility to qualified pipeline and conversion.</p>
+        <p>We partner with B2B, SaaS, and enterprise brands ready to move beyond fragmented marketing and build a unified, ROI-driven growth engine.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
-  <div class="section-header fade-up">
-    <h2>Business Solutions</h2>
-    <span class="section-tag">What we do</span>
-  </div>
-
+<section id="services" class="services-section">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title fade-up">Business solutions built<br>for commercial impact.</h2>
   <div class="services-grid">
     <div class="service-card fade-up">
       <div class="service-num">01</div>
-      <div class="service-title">Brand & Market Positioning</div>
-      <div class="service-desc">Define how the market perceives you. We craft brand strategy, messaging frameworks, and differentiation that make you unmissable in crowded markets.</div>
-      <div class="service-tags">
-        <span class="tag">Brand Strategy</span>
-        <span class="tag">Messaging</span>
-        <span class="tag">Corporate PR</span>
-      </div>
+      <div class="service-name">Brand & Market Positioning</div>
+      <p class="service-desc">Brand strategy, messaging, and differentiation. Corporate communication and PR that sets you apart in crowded markets.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
     </div>
-    <div class="service-card fade-up" style="transition-delay:0.1s">
+    <div class="service-card fade-up">
       <div class="service-num">02</div>
-      <div class="service-title">Performance Marketing & Acquisition</div>
-      <div class="service-desc">Data-driven paid media across Google, LinkedIn, and Meta. SEO, inbound growth, and conversion optimization that drives qualified pipeline, not just traffic.</div>
-      <div class="service-tags">
-        <span class="tag">Google Ads</span>
-        <span class="tag">LinkedIn</span>
-        <span class="tag">SEO</span>
-        <span class="tag">Conversion</span>
-      </div>
+      <div class="service-name">Performance Marketing & Acquisition</div>
+      <p class="service-desc">Paid media across Google, LinkedIn, and Meta. SEO & inbound growth. Conversion optimization for qualified pipeline.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
     </div>
-    <div class="service-card fade-up" style="transition-delay:0.1s">
+    <div class="service-card fade-up">
       <div class="service-num">03</div>
-      <div class="service-title">Event Marketing & Brand Experiences</div>
-      <div class="service-desc">End-to-end event strategy: corporate events, networking, on-ground branding, pre-event buzz campaigns, and post-event engagement to maximize every touchpoint.</div>
-      <div class="service-tags">
-        <span class="tag">Event Branding</span>
-        <span class="tag">Pre-event Buzz</span>
-        <span class="tag">On-ground</span>
-      </div>
+      <div class="service-name">Demand Generation & Pipeline Growth</div>
+      <p class="service-desc">B2B lead generation, marketing automation, and full funnel optimization—aligned with your sales cycle.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
     </div>
-    <div class="service-card fade-up" style="transition-delay:0.2s">
+    <div class="service-card fade-up">
       <div class="service-num">04</div>
-      <div class="service-title">Leadership Profiling & Social Presence</div>
-      <div class="service-desc">Founder and executive LinkedIn positioning, thought leadership content, and strategic personal branding that builds visibility and market authority.</div>
-      <div class="service-tags">
-        <span class="tag">LinkedIn</span>
-        <span class="tag">Thought Leadership</span>
-        <span class="tag">Personal Brand</span>
-      </div>
+      <div class="service-name">Event Marketing & Brand Experiences</div>
+      <p class="service-desc">Corporate and networking events, on-ground branding, pre-event buzz campaigns, and post-event engagement to amplify your reach.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
     </div>
     <div class="service-card fade-up">
       <div class="service-num">05</div>
-      <div class="service-title">Demand Generation & Pipeline Growth</div>
-      <div class="service-desc">B2B lead generation, marketing automation, and funnel optimization designed to build a predictable, scalable revenue engine aligned with your sales process.</div>
-      <div class="service-tags">
-        <span class="tag">B2B Leads</span>
-        <span class="tag">Automation</span>
-        <span class="tag">Funnel Optimization</span>
-      </div>
+      <div class="service-name">Leadership Profiling & Social Media</div>
+      <p class="service-desc">Founder and executive LinkedIn positioning, thought leadership content, and strategic personal branding for visibility.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
     </div>
-    <div class="service-card fade-up" style="transition-delay:0.1s">
+    <div class="service-card fade-up">
       <div class="service-num">06</div>
-      <div class="service-title">Marketing Collateral & Communication</div>
-      <div class="service-desc">Corporate presentations, pitch decks, brochures, social media creatives, and all communication assets that represent your brand with clarity and confidence.</div>
-      <div class="service-tags">
-        <span class="tag">Pitch Decks</span>
-        <span class="tag">Social Creatives</span>
-        <span class="tag">Brochures</span>
-      </div>
+      <div class="service-name">Marketing Collateral & Communication</div>
+      <p class="service-desc">Corporate presentations, brochures, pitch decks, social creatives, and event branding materials crafted to convert.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
     </div>
   </div>
 </section>
 
 <!-- INDUSTRIES -->
 <section id="industries">
-  <div class="fade-up">
-    <h2>Cross-Industry Expertise</h2>
-    <p class="sub">We combine industry depth with digital expertise to build brands that are strategic, scalable, and performance-driven.</p>
-  </div>
-
-  <div class="industries-grid">
-    <div class="industry-item fade-up">
-      <div class="ind-name">Banking & Financial Services (BFSI)</div>
-      <div class="ind-desc">Brand governance, strategic communications, and growth-focused marketing for complex, multi-branch institutions.</div>
+  <div class="section-label">Cross-Industry Expertise</div>
+  <h2 class="section-title fade-up">Industry depth<br>meets digital expertise.</h2>
+  <div class="industries-grid fade-up">
+    <div class="industry-item">
+      <div class="ind-name">BFSI</div>
+      <div class="ind-sub">Brand governance, strategic communications, and growth-focused marketing for complex financial institutions.</div>
     </div>
-    <div class="industry-item fade-up" style="transition-delay:0.1s">
+    <div class="industry-item">
       <div class="ind-name">IT & SaaS</div>
-      <div class="ind-desc">Digital-first strategies, product marketing, and scalable go-to-market execution in fast-evolving tech environments.</div>
+      <div class="ind-sub">Digital-first strategies, product marketing, and scalable go-to-market execution for tech environments.</div>
     </div>
-    <div class="industry-item fade-up" style="transition-delay:0.15s">
+    <div class="industry-item">
       <div class="ind-name">Maritime & Shipping</div>
-      <div class="ind-desc">Specialized B2B marketing and global campaign expertise tailored to the maritime ecosystem.</div>
+      <div class="ind-sub">Specialized B2B marketing and global campaign expertise tailored to the maritime ecosystem.</div>
     </div>
-    <div class="industry-item fade-up" style="transition-delay:0.2s">
+    <div class="industry-item">
       <div class="ind-name">Media & Communications</div>
-      <div class="ind-desc">Compelling brand narratives, PR strategies, and integrated communication frameworks.</div>
+      <div class="ind-sub">Compelling brand narratives, PR strategies, and integrated communication frameworks.</div>
     </div>
-    <div class="industry-item fade-up" style="transition-delay:0.25s">
+    <div class="industry-item">
       <div class="ind-name">Manufacturing</div>
-      <div class="ind-desc">Strong market positioning and demand generation in industrial and B2B sectors.</div>
+      <div class="ind-sub">Strong market positioning and demand generation in industrial and B2B sectors.</div>
     </div>
-    <div class="industry-item fade-up" style="transition-delay:0.3s">
-      <div class="ind-name">Digital & Performance Marketing</div>
-      <div class="ind-desc">Data-driven strategies across SEO, paid media, automation, and analytics to drive measurable growth.</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="process">
-  <div class="fade-up">
-    <h2>Your Journey With Us</h2>
-    <p class="sub">A structured, end-to-end growth engine aligned with your revenue goals — from uncertainty to scalable growth.</p>
-  </div>
-
-  <div class="process-steps">
-    <div class="step fade-up">
-      <div class="step-num">01</div>
-      <div class="step-phase">Phase 1</div>
-      <div class="step-title">Clarity</div>
-      <div class="step-desc">We define your positioning and growth direction, establishing your strategic foundation.</div>
-    </div>
-    <div class="step fade-up" style="transition-delay:0.1s">
-      <div class="step-num">02</div>
-      <div class="step-phase">Phase 2</div>
-      <div class="step-title">Build</div>
-      <div class="step-desc">We set up your marketing engine, funnels, and systems for scalable execution.</div>
-    </div>
-    <div class="step fade-up" style="transition-delay:0.15s">
-      <div class="step-num">03</div>
-      <div class="step-phase">Phase 3</div>
-      <div class="step-title">Launch</div>
-      <div class="step-desc">We activate campaigns, generate demand, and put your brand in front of the right audiences.</div>
-    </div>
-    <div class="step fade-up" style="transition-delay:0.2s">
-      <div class="step-num">04</div>
-      <div class="step-phase">Phase 4</div>
-      <div class="step-title">Improve</div>
-      <div class="step-desc">We optimize performance, test continuously, and boost conversion rates across every touchpoint.</div>
-    </div>
-    <div class="step fade-up" style="transition-delay:0.25s">
-      <div class="step-num">05</div>
-      <div class="step-phase">Phase 5</div>
-      <div class="step-title">Scale</div>
-      <div class="step-desc">We accelerate growth across channels and markets with a proven, data-backed engine.</div>
+    <div class="industry-item">
+      <div class="ind-name">Digital & Performance</div>
+      <div class="ind-sub">Data-driven strategies across SEO, paid media, automation, and analytics to drive measurable growth.</div>
     </div>
   </div>
 </section>
 
 <!-- PROBLEMS -->
-<section id="problems">
-  <div class="fade-up">
-    <h2>Problems We Solve</h2>
-    <p class="sub">Real challenges. Integrated strategy and execution to overcome them.</p>
-  </div>
-
+<section style="background: #f0ede7; padding: 100px 48px;">
+  <div class="section-label">Problems We Solve</div>
+  <h2 class="section-title fade-up">Sound familiar?</h2>
   <div class="problems-list">
-    <div class="problem-item">
-      <span class="p-num">01</span>
-      <span class="p-text">Poor brand differentiation in crowded markets</span>
+    <div class="problem-item fade-up">
+      <span class="problem-num">01</span>
+      Poor brand differentiation in crowded markets
     </div>
-    <div class="problem-item">
-      <span class="p-num">02</span>
-      <span class="p-text">Disconnected marketing and sales efforts</span>
+    <div class="problem-item fade-up">
+      <span class="problem-num">02</span>
+      Disconnected marketing & sales efforts
     </div>
-    <div class="problem-item">
-      <span class="p-num">03</span>
-      <span class="p-text">Lack of measurable ROI from campaigns</span>
+    <div class="problem-item fade-up">
+      <span class="problem-num">03</span>
+      Lack of measurable ROI from campaigns
     </div>
-    <div class="problem-item">
-      <span class="p-num">04</span>
-      <span class="p-text">Inefficient marketing tech stack and automation</span>
+    <div class="problem-item fade-up">
+      <span class="problem-num">04</span>
+      Inefficient marketing tech stack
     </div>
-    <div class="problem-item">
-      <span class="p-num">05</span>
-      <span class="p-text">Low-quality or inconsistent lead flow</span>
+    <div class="problem-item fade-up">
+      <span class="problem-num">05</span>
+      Low-quality or inconsistent lead flow
     </div>
   </div>
-  <p class="problems-note fade-up">We solve these with integrated strategy + execution — not siloed services.</p>
+  <p class="problem-solve fade-up">We solve these with integrated strategy + execution.</p>
 </section>
 
-<!-- RESULTS -->
-<section id="results">
-  <div class="section-header fade-up">
-    <h2>What Results Look Like</h2>
-    <span class="section-tag">The outcome</span>
+<!-- DIFFERENTIATORS -->
+<section class="diff-section">
+  <div class="section-label">Our Differentiation</div>
+  <h2 class="section-title fade-up" style="color: var(--white);">What makes us<br>different?</h2>
+  <div class="diff-grid">
+    <div class="diff-checks fade-up">
+      <div class="diff-check"><span class="check-mark">✔</span> Strategy + Execution + Revenue Accountability</div>
+      <div class="diff-check"><span class="check-mark">✔</span> Built for B2B & high-value sales cycles</div>
+      <div class="diff-check"><span class="check-mark">✔</span> Marketing aligned with sales pipelines</div>
+      <div class="diff-check"><span class="check-mark">✔</span> Founder-led strategic involvement — not junior execution</div>
+    </div>
+    <div class="diff-manifesto fade-up">
+      <div class="manifesto-line">We don't outsource thinking.</div>
+      <div class="manifesto-line">We don't execute without strategy.</div>
+      <div class="manifesto-line">We don't build brands without growth.</div>
+    </div>
   </div>
+</section>
 
-  <div class="results-grid">
-    <div class="result-card fade-up">
-      <div class="result-icon">📈</div>
-      <div class="result-title">Consistent Qualified Pipeline</div>
-      <div class="result-desc">A steady flow of qualified leads, not just traffic. Marketing becomes a predictable driver of growth.</div>
+<!-- PROCESS -->
+<section id="process" class="process-section">
+  <div class="section-label">Your Journey With Us</div>
+  <h2 class="section-title fade-up" style="color: var(--white);">A structured, end-to-end<br>growth engine.</h2>
+  <div class="process-grid">
+    <div class="process-step fade-up">
+      <div class="step-num">Phase 01</div>
+      <div class="step-name">Clarity</div>
+      <div class="step-desc">We define your positioning and growth direction. Understanding your market, competitors, and goals.</div>
     </div>
-    <div class="result-card fade-up" style="transition-delay:0.1s">
-      <div class="result-icon">🎯</div>
-      <div class="result-title">Clear Market Positioning</div>
-      <div class="result-desc">Differentiated brand that stands apart from competitors with a clear, compelling narrative.</div>
+    <div class="process-step fade-up">
+      <div class="step-num">Phase 02</div>
+      <div class="step-name">Build</div>
+      <div class="step-desc">We set up your marketing engine and funnels. Infrastructure, automation, and content frameworks.</div>
     </div>
-    <div class="result-card fade-up" style="transition-delay:0.15s">
-      <div class="result-icon">💰</div>
-      <div class="result-title">Improved Conversion Rates</div>
-      <div class="result-desc">Higher lead-to-customer conversion powered by optimized funnels and aligned sales strategies.</div>
+    <div class="process-step fade-up">
+      <div class="step-num">Phase 03</div>
+      <div class="step-name">Launch</div>
+      <div class="step-desc">We activate campaigns and generate demand. Multi-channel execution designed for traction.</div>
     </div>
-    <div class="result-card fade-up" style="transition-delay:0.2s">
-      <div class="result-icon">⚙️</div>
-      <div class="result-title">Optimized Marketing Engine</div>
-      <div class="result-desc">Fully built-out funnels and automation systems that work continuously without manual overhead.</div>
+    <div class="process-step fade-up">
+      <div class="step-num">Phase 04</div>
+      <div class="step-name">Improve</div>
+      <div class="step-desc">We optimize performance and conversions. Data-driven iteration across every touchpoint.</div>
     </div>
-    <div class="result-card fade-up" style="transition-delay:0.25s">
-      <div class="result-icon">📊</div>
-      <div class="result-title">Real-time ROI Visibility</div>
-      <div class="result-desc">Dashboards and reporting that show exactly where your investment is performing and where to double down.</div>
+    <div class="process-step fade-up">
+      <div class="step-num">Phase 05</div>
+      <div class="step-name">Scale</div>
+      <div class="step-desc">We accelerate growth across channels and markets. Your marketing becomes a predictable revenue driver.</div>
     </div>
-    <div class="result-card fade-up" style="transition-delay:0.3s">
-      <div class="result-icon">🚀</div>
-      <div class="result-title">Scalable Growth Engine</div>
-      <div class="result-desc">A marketing system aligned with revenue goals that scales as your business grows into new markets.</div>
-    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-body fade-up">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">Marketing becomes a predictable driver of growth—not a cost center. Consistent pipeline of qualified leads, clear market positioning, and real-time visibility into ROI.</p>
+    <div class="quote-author">What Results Look Like — Brand & Beyond</div>
   </div>
 </section>
 
 <!-- CTA -->
-<section id="cta">
-  <h2 class="fade-up">Let's build your<br>growth engine.</h2>
-  <p class="fade-up">Tell us about your current marketing challenges and revenue goals. We'll schedule a consultation to discuss your growth potential.</p>
-  <a href="mailto:brandbeyond.consulting@gmail.com" class="btn-cta fade-up">Book a Strategy Call</a>
-  <div class="contact-info fade-up">
-    <a href="mailto:brandbeyond.consulting@gmail.com">brandbeyond.consulting@gmail.com</a>
-    &nbsp;&nbsp;·&nbsp;&nbsp;
-    <a href="tel:+919823633397">+91 98236 33397</a>
+<section id="contact" class="cta-section">
+  <div class="fade-up">
+    <h2 class="cta-title">Let's build your<br>growth engine.</h2>
+    <p class="cta-sub">Tell us about your current marketing challenges and revenue goals. We'll schedule a consultation to discuss your potential.</p>
+    <a href="mailto:brandbeyond.consulting@gmail.com" class="btn-large">Book a Strategy Call</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Brand<span>&</span>Beyond.</div>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#industries">Industries</a>
-    <a href="#process">Process</a>
-    <a href="#cta">Contact</a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Brand & Beyond.</div>
+      <p>We build brands, momentum, market authority, and measurable growth for ambitious businesses.</p>
+      <br>
+      <div class="footer-contact">
+        <a href="mailto:brandbeyond.consulting@gmail.com">brandbeyond.consulting@gmail.com</a>
+        <a href="tel:+919823633397">+91 98236 33397</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">Brand Positioning</a>
+      <a href="#services">Performance Marketing</a>
+      <a href="#services">Demand Generation</a>
+      <a href="#services">Event Marketing</a>
+      <a href="#services">Leadership Profiling</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About</a>
+      <a href="#industries">Industries</a>
+      <a href="#process">Our Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter / X</a>
+    </div>
   </div>
-  <div class="footer-copy">© 2025 Brand & Beyond. All rights reserved.</div>
+  <div class="footer-bottom">
+    <p>© 2025 Brand & Beyond. All rights reserved.</p>
+    <a href="#">Privacy Policy</a>
+  </div>
 </footer>
 
 <script>
-  // ── Typewriter cycle ──
-  const words = [
-    'B2B Brands.',
-    'SaaS Companies.',
-    'Enterprise Teams.',
-    'BFSI Leaders.',
-    'Ambitious Founders.',
-    'E-commerce Brands.',
-  ];
-  let wordIdx = 0;
-  let charIdx = 0;
-  let deleting = false;
-  const el = document.getElementById('cycleWord');
-
+  // TYPEWRITER
+  const phrases = ['Local Businesses.', 'B2B Enterprises.', 'SaaS Companies.', 'Startups.', 'E-commerce Brands.'];
+  let phraseIndex = 0, charIndex = 0, deleting = false;
+  const el = document.getElementById('typewriter');
   function type() {
-    const current = words[wordIdx];
+    const current = phrases[phraseIndex];
     if (!deleting) {
-      el.textContent = current.slice(0, charIdx + 1);
-      charIdx++;
-      if (charIdx === current.length) {
-        deleting = true;
-        setTimeout(type, 2000);
-        return;
-      }
+      el.textContent = current.slice(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === current.length) { deleting = true; setTimeout(type, 2000); return; }
     } else {
-      el.textContent = current.slice(0, charIdx - 1);
-      charIdx--;
-      if (charIdx === 0) {
-        deleting = false;
-        wordIdx = (wordIdx + 1) % words.length;
-      }
+      el.textContent = current.slice(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) { deleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; }
     }
-    setTimeout(type, deleting ? 40 : 80);
+    setTimeout(type, deleting ? 60 : 90);
   }
-  setTimeout(type, 1200);
+  type();
 
-  // ── Scroll effects ──
-  const navbar = document.getElementById('navbar');
+  // NAV SCROLL
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
   });
 
-  // ── Intersection Observer ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  // HAMBURGER
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navMobile').classList.toggle('open');
+  });
+
+  // FADE UP OBSERVER
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.12 });
-
-  document.querySelectorAll('.fade-up, .problem-item').forEach(el => observer.observe(el));
-
-  // ── Mobile menu ──
-  document.getElementById('hamburgerBtn').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.add('open');
-  });
-  document.getElementById('closeMenu').addEventListener('click', () => closeMobileMenu());
-  function closeMobileMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-  }
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
